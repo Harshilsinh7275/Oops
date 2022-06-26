@@ -1,0 +1,62 @@
+interface Tester < T >
+{
+    void show (T o);
+}
+
+//Implementing the generic interface without specifying any generic parameter
+class Imp1 implements Tester
+{
+    public void show (Object o)
+    {
+        System.out.println(o);
+    }
+}
+
+//Implementing the generic interface by specifying generic parameter as Integer
+class Imp2 implements Tester < Integer >
+{
+    public void show (Integer o)
+    {
+        System.out.println(o);
+    }
+}
+
+//Implementing the generic interface by specifying generic parameter as String
+class Imp3 implements Tester < String >
+{
+    public void show (String o)
+    {
+        System.out.println(o);
+    }
+}
+
+//Implementing  the generic interface whose implementation class is also a generic class
+class Imp4 < T > implements Tester < T >
+{
+    public void show (T o)
+    {
+        System.out.println(o);
+    }
+}
+
+public class GenericInterface
+{
+    public static void main (String[]args)
+    {
+        Imp1 i1 = new Imp1 ();
+        i1.show (10);
+        i1.show ("abc");
+        i1.show (true);
+
+        Imp2 i2 = new Imp2 ();
+        i2.show (10);
+        // i2.show("abc"); - Invalid
+
+        Imp3 i3 = new Imp3 ();
+        i3.show ("abc");
+        // i3.show(10.0); - Invalid
+
+        Imp4 < Integer > i4 = new Imp4 < Integer > ();
+        i4.show (10);
+    }
+}
